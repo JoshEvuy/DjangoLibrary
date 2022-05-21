@@ -33,6 +33,7 @@ BASE_APPS = [
 ]
 LOCAL_APPS = [
     'core',
+    'library',
 ]
 THIRD_APPS = [
     'rest_framework',
