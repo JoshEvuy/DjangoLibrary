@@ -10,14 +10,28 @@ ENVIROMENT = env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = os.environ.get('DEBUG')
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split()
-INTERNAL_IPS = os.environ.get('ALLOWED_IPS').split()
+SECRET_KEY = 'lo9cgxx0dqqn$4)xu(v7zw6ua3et9#=1_5x_!#zc4f4(s164olcDAF'
+DEBUG =  True
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+]
+INTERNAL_IPS = [
+    'localhost',
+    '127.0.0.1',
+]
 
 #! CORS allowed whitelist
-CORS_ALLOWED_WHITELIST = os.environ.get('CORS_ALLOWED_ORIGINS').split()
-CORS_ORIGIN_WHITELIST = os.environ.get('CORS_ALLOWED_ORIGINS').split()
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:4200',
+    'http://localhost:8000',
+    'http://localhost:8080',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:4200',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:8080',
+]
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'contenttype',
 ]
@@ -82,7 +96,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABASES['default']['ATOMIC_REQUESTS'] = os.environ.get('DB_ATOMIC_REQUESTS')
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 #! Password encryption
 # https://docs.djangoproject.com/en/dev/topics/auth/passwords/#using-argon2-with-django
