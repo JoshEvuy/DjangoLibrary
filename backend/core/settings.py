@@ -10,7 +10,7 @@ ENVIROMENT = env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'lo9cgxx0dqqn$4)xu(v7zw6ua3et9#=1_5x_!#zc4f4(s164olcDAF'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'lo9cgxx0dqqn$4)xu(v7zw6ua3et9#=1_5x_!#zc4f4(s164olcDAF')
 DEBUG =  True
 ALLOWED_HOSTS = [
     'localhost',
