@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import BookSerializer, CustomerSerializer, BookrentSerializer
@@ -6,6 +6,7 @@ from .serializers import BookSerializer, CustomerSerializer, BookrentSerializer
 #! INFO: Book ViewSet
 class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
+    permission_classes = (permissions.AllowAny,)
 
     def get_queryset(self, pk=None):
         if pk is None:
@@ -49,6 +50,7 @@ class BookViewSet(viewsets.ModelViewSet):
 #! INFO: Customer ViewSet
 class CustomerViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
+    permission_classes = (permissions.AllowAny,)
 
     def get_queryset(self, pk=None):
         if pk is None:
@@ -92,8 +94,9 @@ class CustomerViewSet(viewsets.ModelViewSet):
 #! INFO: BookRent ViewSet
 class BookrentViewSet(viewsets.ModelViewSet):
     serializer_class = BookrentSerializer
+    permission_classes = (permissions.AllowAny,)
 
-    def get_queryset(self, pk=None):
+    def get_queryset(self, pk=None, return_date=None):
         if pk is None:
             return self.get_serializer().Meta.model.objects.all()
         return self.get_serializer().Meta.model.objects.filter(id=pk).first()

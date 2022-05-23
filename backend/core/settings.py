@@ -17,10 +17,12 @@ INTERNAL_IPS = os.environ.get('ALLOWED_IPS').split()
 
 #! CORS allowed whitelist
 CORS_ALLOWED_WHITELIST = os.environ.get('CORS_ALLOWED_ORIGINS').split()
+CORS_ORIGIN_WHITELIST = os.environ.get('CORS_ALLOWED_ORIGINS').split()
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'contenttype',
 ]
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 BASE_APPS = [
     'django.contrib.admin',
@@ -42,6 +44,7 @@ THIRD_APPS = [
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

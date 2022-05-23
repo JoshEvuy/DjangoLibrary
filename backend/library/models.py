@@ -2,19 +2,19 @@ import os
 from turtle import title
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.utils import timezone
+from datetime import date, timedelta
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 def get_max_return_date():
-    return timezone.now() + timezone.timedelta(days=15)
+    return date.today() + timedelta(days=15)
 
 def set_date_today():
-    return timezone.now()
+    return date.today()
 
 class Book(models.Model):
     title                       = models.CharField(max_length=60, null=False, blank=False, unique=True)
     editorial                   = models.CharField(max_length=25, null=True, blank=True)
-    Author                      = models.CharField(max_length=40, null=False, blank=False)
+    author                      = models.CharField(max_length=40, null=False, blank=False)
     gender                      = models.CharField(max_length=20, null=False, blank=False)
     author_country              = models.CharField(max_length=20, null=True, blank=True)
     number_of_pages             = models.PositiveIntegerField(default=1, null=False, blank=False, validators=[MinValueValidator(1), MaxValueValidator(1000)])

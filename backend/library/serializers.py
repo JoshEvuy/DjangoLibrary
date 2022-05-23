@@ -14,5 +14,5 @@ class CustomerSerializer(serializers.ModelSerializer):
 class BookrentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookrent
-        fields = ('book_id','customer_id','return_date',)
+        fields = '__all__'
         read_only_fields = ('rent_date','max_return_date',)
