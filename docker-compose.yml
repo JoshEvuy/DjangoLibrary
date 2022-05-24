@@ -2,35 +2,22 @@ version: '3'
 
 services:
   backend:
-    container_name: dev_backend
-    build:
-      context: ./backend
-    restart: always
-    command: gunicorn core.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+    build: ./backend
+    command: [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+    volumes:
+      - ./backend:/app/backend
     ports:
       - "8000:8000"
-    volumes:
-      - .:/app
-      - static_volume:/app/static
-  frontend:
-    container_name: dev_frontend
-    restart: always
-    build:
-      context: ./frontend
-    volumes:
-      - react_build:/frontend/build
-  nginx:
-    container_name: dev_webapp
-    restart: on-failure
-    image: nginx:latest
-    volumes:
-      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
-      - react_build:/var/www/react
-    ports:
-      - 80:80
     depends_on:
-      - backend
-      - frontend
+      - db
+  frontend:
+    build: ./frontend
+    command: [ "npm", "start" ]
+    volumes:
+      - ./frontend:/app/frontend
+      - node-modules:/app/frontend/node_modules
+    ports:
+      - "3000:3000"
+
 volumes:
-  static_volume:
-  react_build:
+  node-modules:
