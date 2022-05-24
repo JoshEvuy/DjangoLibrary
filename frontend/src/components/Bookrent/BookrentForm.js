@@ -74,7 +74,7 @@ const BookrentForm = () => {
                 </div>
                 <div className='col-md-6'>
                     <label htmlFor='return_date' className='form-label'>return_date</label>
-                    <input type='date' name='return_date' value={bookrent.return_date} onChange={handleInputChange} className='form-control' id='return_date' />
+                    <input type='date' name='return_date' value={bookrent.return_date} onChange={handleInputChange} className='form-control' id='return_date' required />
                 </div>
                 <div className='col-md-12'>
                     {
