@@ -6,4 +6,8 @@ This project has been created for a test for the company company "Connecting Vis
 
 ### Docker
 
-Docker configuration is not finished
+To run docker successfully, you need to enter the following commands in the console:
+```bash
+docker-compose build
+docker-compose up
+```
